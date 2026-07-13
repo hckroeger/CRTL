@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CRTL</title>
+	<!-- Apply the stored theme before first paint (no light flash). -->
+	<script>try { var t = localStorage.getItem('crtl-theme'); if (t === null) t = localStorage.getItem('startpage-theme'); if (t === 'dark') document.documentElement.classList.add('dark'); } catch (e) {}</script>
+	<!-- Critical background so the pre-stylesheet paint isn't white. Values
+	     mirror --crt-bg in src/styles.css. -->
+	<style>html { background: #9cb89c; } html.dark { background: #16110b; }</style>
+	<!-- Favicon: an amber-phosphor CRT screen (also a Ctrl keycap) with a `>_`
+	     terminal prompt. Colours mirror the dark-theme accent in src/styles.css. -->
+	<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='.5' y='.5' width='15' height='15' rx='3.5' fill='%2316110b' stroke='%23e8ab55'/><path d='M3.4 4.8 6.4 8 3.4 11.2' fill='none' stroke='%23e8ab55' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/><rect x='7.6' y='9.7' width='5' height='1.8' rx='.4' fill='%23e8ab55'/></svg>">
+</head>
+<body>
+	<div class="location-pill checking" id="location-pill" title="Detecting location...">
+		<span class="location-dot"></span>
+		<span class="location-text" id="location-text">Home</span>
+	</div>
+	<div class="gear" id="gear" title="Settings"><span class="svgicon" data-bi="gear-fill"></span></div>
+	<div class="theme" id="toggle-dark" title="Dark mode"><span class="svgicon" data-bi="moon-fill"></span></div>
+	<div class="gear-menu" id="gear-menu">
+		<div class="gear-item" id="toggle-edit">
+			<span>Edit mode</span>
+			<span class="toggle"></span>
+		</div>
+		<div class="gear-item" id="open-options">
+			<span>Global options</span>
+			<span class="svgicon" data-bi="sliders"></span>
+		</div>
+	</div>
+	<div class="help" id="help" title="Help"><span class="svgicon" data-bi="question-lg"></span></div>
+	<div class="container" id="container"></div>
+
+	<script type="module" src="/src/main.ts"></script>
+</body>
+</html>

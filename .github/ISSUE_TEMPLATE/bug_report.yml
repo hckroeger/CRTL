@@ -1,0 +1,91 @@
+name: Bug report
+description: Something in CRTL doesn't work as expected.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug. Please don't report security
+        issues here - see the [security policy](../blob/main/.github/SECURITY.md)
+        for private reporting.
+
+        CRTL stores your config in the browser's `localStorage`. Note that
+        Home/Away detection and health dots rely on `http://` probes to LAN
+        hosts: served over `https://` the browser blocks them as mixed content
+        and everything reads as down - that's expected, not a bug.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead?
+      placeholder: |
+        I long-pressed an entry with three links and ...
+        I expected ... but ...
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: The exact steps to trigger it, starting from a fresh load if you can.
+      placeholder: |
+        1. Open Edit mode
+        2. Add an entry with two links
+        3. Long-press it
+        4. ...
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: CRTL version
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: build
+    attributes:
+      label: How are you running it?
+      options:
+        - Offline single-file copy (CRTL.html over file://)
+        - Self-hosted (served over http://)
+        - Self-hosted (served over https://)
+        - Local dev (npm run dev)
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser & version
+      description: e.g. "Firefox 142", "Chrome 141", "Safari 18".
+      placeholder: "Chrome 141"
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Operating system
+      options:
+        - Linux
+        - macOS
+        - Windows
+        - iOS / iPadOS
+        - Android
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: console
+    attributes:
+      label: Console output
+      description: Open the browser devtools console (F12) and paste any errors or warnings.
+      render: shell
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and this isn't a duplicate.
+          required: true
+        - label: This is not a security vulnerability (those go through the security policy).
+          required: true

@@ -1,0 +1,42 @@
+name: Feature request
+description: Suggest an improvement or new capability for CRTL.
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        CRTL aims to stay a small, local-first, single-file dashboard - no
+        backend, no accounts, no telemetry, config in `localStorage`, and it must
+        keep working fully offline from a single `CRTL.html`. It's built for
+        someone linking their own home or lab services, not a hosted multi-user
+        portal. Proposals that fit that shape are easiest to land.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Describe the use case or the pain point, not just the solution.
+      placeholder: When I have a service that's only reachable over VPN, I can't ... because ...
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What new behavior or capability would you like? Sketch the interaction if relevant.
+      placeholder: |
+        Add a third location state beyond Home/Away so ...
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Any workarounds you currently use, or other approaches you weighed.
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope check
+      options:
+        - label: This keeps CRTL local-first and offline-capable - no backend, accounts, or telemetry.
+        - label: I searched existing issues and this isn't already requested.
+          required: true

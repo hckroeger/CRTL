@@ -1,0 +1,55 @@
+{
+  "name": "crtl",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Phosphor/CRT homelab dashboard. Source is modular under src/; `npm run build` inlines it into the single self-contained CRTL.html. Vite dev is a live preview.",
+  "license": "PolyForm-Noncommercial-1.0.0",
+  "author": "BrainInBlack <braininblack@gmail.com>",
+  "homepage": "https://github.com/BrainInBlack/CRTL#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrainInBlack/CRTL.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BrainInBlack/CRTL/issues"
+  },
+  "keywords": [
+    "homelab",
+    "dashboard",
+    "start-page",
+    "new-tab",
+    "self-hosted",
+    "local-first",
+    "offline",
+    "single-file",
+    "crt",
+    "typescript",
+    "vite"
+  ],
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "vite",
+    "dev:web": "BUILD_TARGET=web vite",
+    "build": "tsc --noEmit && vite build",
+    "build:web": "tsc --noEmit && BUILD_TARGET=web vite build",
+    "build:all": "npm run build && npm run build:web",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "gen-icons": "node scripts/gen-icons.mjs"
+  },
+  "devDependencies": {
+    "bootstrap-icons": "^1.13.1",
+    "happy-dom": "^20.9.0",
+    "typescript": "~5.9.3",
+    "vite": "^8.0.16",
+    "vite-plugin-singlefile": "^2.3.3",
+    "vitest": "^4.1.7"
+  },
+  "dependencies": {
+    "@fontsource/orbitron": "^5.2.8"
+  }
+}

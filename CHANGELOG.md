@@ -1,0 +1,65 @@
+# Changelog
+
+All notable changes to CRTL are documented here.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+## [1.0.0] - 2026-07-13
+
+Initial public release. Everything below describes the app as it ships at 1.0.0.
+
+### Added
+
+- **Card dashboard** - groups of services in a phosphor / CRT-styled card
+  layout, each entry with an icon, a name, and one or more links. Click an entry
+  to open its primary URL; long-press (or tap the dots) on a multi-link entry to
+  slide out a labeled button strip with all of them.
+- **Home / Away detection** - on load and every 60 seconds the page probes a
+  configurable list of internal endpoints (`fetch` with `mode: 'no-cors'`). If
+  any responds you're Home, otherwise Away. A top-right pill shows the current
+  state and lets you flip it manually (auto -> lock -> switch -> auto).
+- **Away-mode link reordering** - when Away, each entry's links reorder so
+  non-internal URLs come first, and home-only entries dim. A URL is "internal"
+  if its host ends in `.home` / `.local` or sits in an RFC1918 range.
+- **Per-service health dots** - opt in per entry for a green (up) / amber (down)
+  reachability dot beside the name.
+- **Two builds from one source** - a downloadable single-file `CRTL.html` (full
+  features, runs offline from `file://`) and a hosted web build for devices that
+  can't open local files (iPhone / iPad). The active build and version number
+  are shown in Help.
+- **Web-build Home / Away** - a hosted `https` page can't probe an `http` LAN
+  (mixed content), so the web build uses a manual Home/Away toggle and shows
+  health dots only for `https` targets. Adding one `https`-reachable "beacon" to
+  the Home probes restores automatic detection.
+- **Edit mode** - add, edit, reorder (drag-and-drop within and across groups),
+  and delete groups and entries from the gear menu, with a Global options panel
+  for Home-detection probes and sync.
+- **Icons** - a curated Bootstrap Icons set is baked into the build and renders
+  offline; brand icons (`svg:name`, Simple Icons) and non-curated Bootstrap
+  icons (`bi:name`) are fetched once from a public CDN when you save an entry,
+  then embedded into your config so they keep working offline afterward.
+- **Dark / light theme** - CRT phosphor palette exposed as CSS variables, with a
+  persisted theme toggle applied before first paint (no flash).
+- **Encrypted gist sync** - optional, opt-in config sync across machines via a
+  GitHub gist. The payload is AES-encrypted client-side, so GitHub only ever
+  stores ciphertext; the token and key are stored locally in plaintext,
+  last-write-wins on wall-clock timestamps. An import gate and a base-version
+  check keep a fresh machine from clobbering the gist.
+- **Local-first storage** - config lives in the browser's `localStorage`; the
+  built-in defaults in `src/config.ts` are only a first-run seed. No accounts,
+  no telemetry.
+
+### Security
+
+- Config-supplied URLs are scheme-validated (`safeUrl`) before they reach an
+  `href` or `window.open` - only `http` / `https` / `mailto` navigate, so a
+  `javascript:` or `data:` URL smuggled in through a synced gist or a hand-edited
+  `localStorage` is neutralized to `#` rather than run as script.
+- Icon strings are escaped before interpolation into the `url("...")` CSS mask,
+  so a crafted `data:` icon can't break out of the `--icon` custom property.
+
+[Unreleased]: https://github.com/BrainInBlack/CRTL/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/BrainInBlack/CRTL/releases/tag/v1.0.0
